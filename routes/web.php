@@ -23,8 +23,14 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::Resource('/admin/users', 'AdminUsersController');
+ Route::resource('admin/users', 'AdminUsersController',['names'=>[
 
+        'index'=>'admin.users.index',
+        'create'=>'admin.users.create',
+        'store'=>'admin.users.store',
+        'edit'=>'admin.users.edit'
+
+    ]]);
 Route::get('/admin', function () {
     return view('admin.index');
 });
