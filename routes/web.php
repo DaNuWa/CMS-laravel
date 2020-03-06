@@ -23,7 +23,13 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
- Route::resource('admin/users', 'AdminUsersController',['names'=>[
+ 
+Route::get('/admin', function () {
+    return view('admin.index');
+});
+
+Route::group(['middleware'=>'admin'],function(){
+    Route::resource('admin/users', 'AdminUsersController',['names'=>[
 
         'index'=>'admin.users.index',
         'create'=>'admin.users.create',
@@ -31,6 +37,13 @@ Route::get('/home', 'HomeController@index')->name('home');
         'edit'=>'admin.users.edit'
 
     ]]);
-Route::get('/admin', function () {
-    return view('admin.index');
 });
+
+Route::resource('admin/posts', 'AdminPostsController',['names'=>[
+
+    'index'=>'admin.posts.index',
+    'create'=>'admin.posts.create',
+    'store'=>'admin.posts.store',
+    'edit'=>'admin.posts.edit'
+
+]]);

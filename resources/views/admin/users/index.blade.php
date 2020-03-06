@@ -1,5 +1,14 @@
 @extends('layouts.admin')
 @section('content')
+
+@if(Session::has('deleted_user'))
+<p class="bg-danger">{{session('deleted_user')}}</p>
+@endif
+
+@if(Session::has('created_user'))
+<p class="bg-blue">{{session('created_user')}}</p>
+@endif
+
 <table class="table">
        <thead>
          <tr>
@@ -25,7 +34,7 @@
                     <td><a href="{{route('admin.users.edit',$user->id)}}">{{$user->name}}</a></td>
                     <td>{{$user->email}}</td>
                     <td>{{$user->role->name}}</td>
-                    <td>{{$user->is_actve==1?'Active':'Not Active'}}</td>
+                   <td>{{$user->is_actve==1?'Active':'Not Active'}}</td>
                     <td>{{$user->created_at->diffForHumans()}}</td>
                     <td>{{$user->updated_at->diffForHumans()}}</td>
                     
