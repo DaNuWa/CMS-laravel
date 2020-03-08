@@ -14,8 +14,12 @@ class Photo extends Model
 
 ];
 
-public function getFileAttribute($photo)
-{
-    return $this->uploads.$photo;
-}
+   public function getFileAttribute($photo)
+    {
+        return $this->uploads.$photo;
+    }
+    public function post()
+    {
+        return $this->belongsTo('App\User');
+    }
 }
